@@ -1,0 +1,20 @@
+# frontend-deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      app: my-frontend
+  template:
+    metadata:
+      labels:
+        app: my-frontend
+    spec:
+      containers:
+      - name: my-frontend-container
+        # 이미지 이름만 명시 (태그는 overlay에서 지정)
+        image: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
+        ports:
+        - containerPort: 80
