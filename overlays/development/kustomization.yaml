@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
 - ../../base/backend
 - ../../base/frontend
-- ../../base/common
+# - ../../base/common
 - secret.yaml # 현재 디렉토리의 secret.yaml도 포함
 
 # 2. 이 환경의 모든 리소스에 적용할 네임스페이스

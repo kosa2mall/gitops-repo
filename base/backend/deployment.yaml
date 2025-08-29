@@ -1,9 +1,11 @@
-# backend-deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  # Kustomize가 namespace를 나중에 추가하므로 여기서는 생략합니다.
+  name: backend-deployment
 spec:
+  # replicas는 overlays에서 patch로 덮어쓸 것이므로, base에서는 기본값 1로 둡니다.
+  replicas: 1
   selector:
     matchLabels:
       app: my-backend
@@ -14,16 +16,16 @@ spec:
     spec:
       containers:
       - name: my-backend-container
-        # 이미지 이름만 명시 (태그는 overlay에서 지정)
-        image: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
+        # image 태그는 overlays에서 최종적으로 지정되므로, base에서는 초기 버전이나 latest를 사용합니다.
+        image: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend:1.0
+        ports:
+        - containerPort: 8080
         env:
         - name: ALLOWED_ORIGIN
           value: "*"
-        ports:
-        - containerPort: 8080
         envFrom:
         - secretRef:
-            # 시크릿 이름도 overlay에서 prefix가 붙을 것을 예상하여 기본 이름만 명시
+            # Secret의 이름은 환경에 따라 달라지지 않으므로 base에 명시합니다.
             name: backend-db-secret
         resources:
           requests:
