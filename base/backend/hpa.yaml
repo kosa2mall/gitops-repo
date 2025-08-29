@@ -7,7 +7,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: backend # Kustomize가 prefix를 붙일 수 있도록 기본 이름만 명시
+    name: backend-deployment # Kustomize가 prefix를 붙일 수 있도록 기본 이름만 명시
   metrics:
   - type: Resource
     resource:
