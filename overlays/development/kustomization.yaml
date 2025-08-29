@@ -5,8 +5,13 @@ kind: Kustomization
 resources:
 - ../../base/backend
 - ../../base/frontend
+<<<<<<< HEAD
 # - ../../base/common
 - secret.yaml # 현재 디렉토리의 secret.yaml도 포함
+=======
+- ../../base/common
+- secret.yaml
+>>>>>>> 9c0630c2d38244d90122509dcffd98358103f760
 
 # 2. 이 환경의 모든 리소스에 적용할 네임스페이스
 namespace: default
@@ -17,33 +22,34 @@ namespace: default
 # 4. 🚨 Jenkins CI가 수정할 이미지 태그를 최종 지정합니다.
 images:
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
-  newTag: "1.0" # Terraform에 있던 초기 태그
+  newTag: "1.0"
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
-  newTag: "1.3" # Terraform에 있던 초기 태그
+  newName: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
+  newTag: 67e9e37
 
 # 5. base의 설정을 덮어쓸 내용(패치)을 정의합니다.
 patches:
-- target:
+- patch: |-
+    - op: replace
+      path: /spec/replicas
+      value: 2
+  target:
     kind: Deployment
     name: backend
-  patch: |-
+- patch: |-
     - op: replace
       path: /spec/replicas
       value: 2
-- target:
+  target:
     kind: Deployment
     name: frontend
-  patch: |-
-    - op: replace
-      path: /spec/replicas
-      value: 2
-- target:
-    kind: HorizontalPodAutoscaler
-    name: backend-hpa
-  patch: |-
+- patch: |-
     - op: replace
       path: /spec/minReplicas
       value: 2
     - op: replace
       path: /spec/maxReplicas
       value: 3
+  target:
+    kind: HorizontalPodAutoscaler
+    name: backend-hpa
