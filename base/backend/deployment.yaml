@@ -4,8 +4,6 @@ metadata:
   # Kustomize가 namespace를 나중에 추가하므로 여기서는 생략합니다.
   name: backend-deployment
 spec:
-  # replicas는 overlays에서 patch로 덮어쓸 것이므로, base에서는 기본값 1로 둡니다.
-  replicas: 1
   selector:
     matchLabels:
       app: my-backend
