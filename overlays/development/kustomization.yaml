@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 # 1. 공통 리소스(base)들을 가져옵니다.
+# - ../../base/common
 resources:
 - ../../base/backend
 - ../../base/frontend
-# - ../../base/common
-- secret.yaml # 현재 디렉토리의 secret.yaml도 포함
+- secret.yaml
 
 # 2. 이 환경의 모든 리소스에 적용할 네임스페이스
 namespace: default
@@ -17,10 +17,11 @@ namespace: default
 # 4. 🚨 Jenkins CI가 수정할 이미지 태그를 최종 지정합니다.
 images:
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
-  newTag: "1.0"
+  newName: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
+  newTag: bfa8ccf
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
   newName: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
-  newTag: 67e9e37
+  newTag: 347ea23
 
 # 5. base의 설정을 덮어쓸 내용(패치)을 정의합니다.
 patches:
