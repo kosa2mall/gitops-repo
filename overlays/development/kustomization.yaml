@@ -17,7 +17,8 @@ namespace: default
 # 4. 🚨 Jenkins CI가 수정할 이미지 태그를 최종 지정합니다.
 images:
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
-  newTag: "1.0"
+  newName: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
+  newTag: bfa8ccf
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
   newName: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
   newTag: 347ea23
