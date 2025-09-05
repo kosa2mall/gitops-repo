@@ -31,7 +31,7 @@ patches:
       value: 2
   target:
     kind: Deployment
-    name: frontend
+    name: frontend-deployment
 - patch: |-
     - op: replace
       path: /spec/minReplicas
