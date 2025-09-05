@@ -13,3 +13,9 @@ resources:
 images:
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
   newTag: preview-unify-f2dfb29-aws # 이 태그는 Jenkins가 업데이트할 것입니다.
+
+patches:
+- path: deployment-env-patch.yaml
+  target:
+    kind: Deployment
+    name: frontend-deployment

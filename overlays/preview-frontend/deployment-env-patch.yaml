@@ -1,0 +1,16 @@
+# deployment-env-patch.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # 어떤 Deployment를 수정할지 이름을 지정합니다.
+  name: frontend-deployment
+spec:
+  template:
+    spec:
+      containers:
+      # 어떤 컨테이너를 수정할지 이름을 지정합니다.
+      - name: my-frontend-container
+        # env 항목을 추가하여 환경변수를 주입합니다.
+        env:
+        - name: REACT_APP_API_URL
+          value: "http://43.203.203.165:8081" # 배스천 서버 IP와 백엔드용 포트
