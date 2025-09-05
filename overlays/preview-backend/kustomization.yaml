@@ -1,15 +1,15 @@
-# overlays/preview-frontend/kustomization.yaml
+# overlays/preview-backend/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-# 이 오버레이의 네임스페이스는 frontend-preview 입니다.
-namespace: frontend-preview
+# 이 오버레이의 네임스페이스는 backend-preview 입니다.
+namespace: backend-preview
 
-# base에서는 frontend 리소스만 가져옵니다.
+# base에서는 backend 리소스만 가져옵니다.
 resources:
-- ../../base/frontend
-# - secret.yaml (프론트엔드용 secret이 있다면 추가)
+- ../../base/backend
+- secret.yaml # 백엔드용 secret.yaml을 이 경로에 복사해야 합니다.
 
 images:
-- name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
+- name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
   newTag: preview-unify-f2dfb29-aws # 이 태그는 Jenkins가 업데이트할 것입니다.
