@@ -18,7 +18,7 @@ namespace: default
 images:
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
   newName: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
-  newTag: 50-aws
+  newTag: 53-aws
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
   newName: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
   newTag: 51-aws
