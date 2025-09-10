@@ -18,10 +18,10 @@ namespace: default
 images:
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
   newName: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
-  newTag: 45-aws
+  newTag: 48-aws
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
   newName: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
-  newTag: 46-aws
+  newTag: 48-aws
 
 # 5. base의 설정을 덮어쓸 내용(패치)을 정의합니다.
 patches:
