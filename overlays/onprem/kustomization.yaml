@@ -1,5 +1,5 @@
 # overlays/onprem/kustomization.yaml
-##
+
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
@@ -8,23 +8,44 @@ resources:
 - ../../base/frontend
 - secret.yaml
 
-namespace: web-test
+# 현재 테스트 중인 네임스페이스 (나중에 default로 변경 가능)
+namespace: web-test 
 
 images:
 # --- backend 이미지 설정 ---
-# 1. base의 ECR 이미지 이름을 찾아서,
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
-  # 2. 아래 Harbor 주소로 교체합니다.
-  newName: harbor.ecommerce.corp/ecr-replicated/my-backend # 👈 Harbor에서 확인한 정확한 주소
-  # 3. Jenkins가 이 태그를 계속해서 수정합니다.
+  newName: harbor.ecommerce.corp/ecr-replicated/my-backend
   newTag: 56-onprem
 
 # --- frontend 이미지 설정 ---
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
-  newName: harbor.ecommerce.corp/ecr-replicated/my-frontend # 👈 Harbor에서 확인한 정확한 주소
+  newName: harbor.ecommerce.corp/ecr-replicated/my-frontend
   newTag: 55-onprem
 
+# 5. base의 설정을 덮어쓸 내용(패치)을 정의합니다.
 patches:
+# -----▼▼▼▼▼ 이 부분을 추가해주세요 ▼▼▼▼▼-----
+# Deployment에 imagePullSecrets를 추가하는 패치
+- patch: |-
+    - op: add
+      path: /spec/template/spec/imagePullSecrets
+      value:
+      - name: harbor-secret
+  target:
+    kind: Deployment
+    name: frontend-deployment
+
+- patch: |-
+    - op: add
+      path: /spec/template/spec/imagePullSecrets
+      value:
+      - name: harbor-secret
+  target:
+    kind: Deployment
+    name: backend-deployment
+# -----▲▲▲▲▲ 여기까지 추가 ▲▲▲▲▲-----
+
+# ----- 기존에 있던 다른 패치들 -----
 - patch: |-
     - op: replace
       path: /spec/replicas
