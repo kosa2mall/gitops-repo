@@ -8,7 +8,7 @@ resources:
 - ../../base/frontend
 - secret.yaml
 
-namespace: default
+namespace: web-test
 
 images:
 # --- backend 이미지 설정 ---
