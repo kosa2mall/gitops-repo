@@ -1,29 +1,29 @@
+# overlays/onprem/kustomization.yaml
+
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-# 1. 공통 리소스(base)들을 가져옵니다.
-# - ../../base/common
 resources:
 - ../../base/backend
 - ../../base/frontend
 - secret.yaml
 
-# 2. 이 환경의 모든 리소스에 적용할 네임스페이스
 namespace: default
 
-# 3. 이 환경의 모든 리소스 이름에 붙일 접두사 (예: backend -> dev-backend)
-# namePrefix: dev-  # 필요 시 주석 해제하여 사용
-
-# 4. 🚨 Jenkins CI가 수정할 이미지 태그를 최종 지정합니다.
 images:
+# --- backend 이미지 설정 ---
+# 1. base의 ECR 이미지 이름을 찾아서,
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
-  newName: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
-  newTag: 37-onprem
-- name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
-  newName: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
-  newTag: 41-onprem
+  # 2. 아래 Harbor 주소로 교체합니다.
+  newName: harbor.ecommerce.corp/ecr-replicated/my-backend # 👈 Harbor에서 확인한 정확한 주소
+  # 3. Jenkins가 이 태그를 계속해서 수정합니다.
+  newTag: 56-onprem
 
-# 5. base의 설정을 덮어쓸 내용(패치)을 정의합니다.
+# --- frontend 이미지 설정 ---
+- name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
+  newName: harbor.ecommerce.corp/ecr-replicated/my-frontend # 👈 Harbor에서 확인한 정확한 주소
+  newTag: 55-onprem
+
 patches:
 - patch: |-
     - op: replace
@@ -31,7 +31,8 @@ patches:
       value: 2
   target:
     kind: Deployment
-    name: frontend
+    name: frontend-deployment
+
 - patch: |-
     - op: replace
       path: /spec/minReplicas
