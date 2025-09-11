@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: backend-service
   annotations:
-    alb.ingress.kubernetes.io/healthcheck-path: /api
+    alb.ingress.kubernetes.io/healthcheck-path: /api/products
 spec:
   selector:
     app: my-backend
