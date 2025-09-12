@@ -17,7 +17,7 @@ namespace: web-test
 # --- frontend 이미지 설정 ---
 images:
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
-  newName: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
+  newName: harbor.ecommerce.corp/ecr-replicated/my-backend
   newTag: 57-onprem
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
   newName: harbor.ecommerce.corp/ecr-replicated/my-frontend
