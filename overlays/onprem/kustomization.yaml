@@ -11,7 +11,7 @@ resources:
 
 
 # 현재 테스트 중인 네임스페이스 (나중에 default로 변경 가능)
-namespace: web-test
+namespace: web-app
 
 # --- backend 이미지 설정 ---
 
