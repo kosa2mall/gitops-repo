@@ -9,7 +9,7 @@ resources:
 - secret.yaml
 
 # 2. 이 환경의 모든 리소스에 적용할 네임스페이스
-namespace: default
+namespace: web-app
 
 # 3. 이 환경의 모든 리소스 이름에 붙일 접두사 (예: backend -> dev-backend)
 # namePrefix: dev-  # 필요 시 주석 해제하여 사용
