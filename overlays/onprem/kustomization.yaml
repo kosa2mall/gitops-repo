@@ -8,8 +8,7 @@ resources:
 - ../../base/frontend
 - secret.yaml
 - harbor-secret.yaml
-patches:
-- path: tolerations-patch.yaml # 여기에 패치 파일을 추가합니다.
+
 
 # 현재 테스트 중인 네임스페이스 (나중에 default로 변경 가능)
 namespace: web-test
@@ -34,6 +33,8 @@ images:
 # ----- 기존에 있던 다른 패치들 -----
 
 patches:
+- path: tolerations-patch.yaml # 여기에 패치 파일을 추가합니다.
+
 - patch: |-
     - op: add
       path: /spec/template/spec/imagePullSecrets
