@@ -1,0 +1,13 @@
+# overlays/onprem/tolerations-patch.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  template:
+    spec:
+      tolerations:
+      - key: "loadtest"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
