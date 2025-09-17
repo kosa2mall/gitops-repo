@@ -36,6 +36,13 @@ images:
 patches:
 - path: tolerations-patch.yaml
 - patch: |-
+    - op: replace
+      path: /spec/type
+      value: LoadBalancer
+  target:
+    kind: Service
+    name: backend-service
+- patch: |-
     - op: add
       path: /spec/template/spec/imagePullSecrets
       value:
