@@ -25,13 +25,6 @@ images:
   newTag: 104-onprem
 
 patches:
-- patch: |-
-    - op: replace
-      path: /metadata/name
-      value: web-app-frontend-service
-  target:
-    kind: Service
-    name: frontend-service
 - path: tolerations-patch.yaml
 - patch: |-
     - op: replace
