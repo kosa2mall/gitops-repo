@@ -24,16 +24,14 @@ images:
   newName: harbor.ecommerce.corp/ecr-replicated/my-frontend
   newTag: 104-onprem
 
-# 5. base의 설정을 덮어쓸 내용(패치)을 정의합니다.
-# -----▼▼▼▼▼ 이 부분을 추가해주세요 ▼▼▼▼▼-----
-# Deployment에 imagePullSecrets를 추가하는 패치
-
-# -----▲▲▲▲▲ 여기까지 추가 ▲▲▲▲▲-----
-
-# ----- 기존에 있던 다른 패치들 -----
-
-
 patches:
+- patch: |-
+    - op: replace
+      path: /metadata/name
+      value: web-app-frontend-service
+  target:
+    kind: Service
+    name: frontend-service
 - path: tolerations-patch.yaml
 - patch: |-
     - op: replace
