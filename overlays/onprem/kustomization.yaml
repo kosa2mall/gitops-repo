@@ -19,10 +19,10 @@ namespace: web-app
 images:
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-backend
   newName: harbor.ecommerce.corp/ecr-replicated/my-backend
-  newTag: 98-onprem
+  newTag: 103-onprem
 - name: 224874704033.dkr.ecr.ap-northeast-2.amazonaws.com/my-frontend
   newName: harbor.ecommerce.corp/ecr-replicated/my-frontend
-  newTag: 102-onprem
+  newTag: 103-onprem
 
 # 5. base의 설정을 덮어쓸 내용(패치)을 정의합니다.
 # -----▼▼▼▼▼ 이 부분을 추가해주세요 ▼▼▼▼▼-----
