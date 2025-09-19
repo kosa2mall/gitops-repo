@@ -31,8 +31,8 @@ spec:
             name: backend-db-secret
         resources:
           requests:
-            cpu: 100m
-            memory: 128Mi
+            cpu: 200m
+            memory: 256Mi # 노드 자원이 부족해서 사이드카가 스케줄링 실패 -> 스펙
           limits:
             cpu: 500m
             memory: 512Mi
