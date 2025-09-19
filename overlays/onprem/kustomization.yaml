@@ -66,10 +66,3 @@ patches:
   target:
     kind: HorizontalPodAutoscaler
     name: backend-hpa
-- patch: |-
-    - op: replace
-      path: /metadata/name
-      value: web-app-frontend-service
-  target:
-    kind: Service
-    name: frontend-service
