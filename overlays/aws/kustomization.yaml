@@ -7,6 +7,7 @@ resources:
 - ../../base/backend
 - ../../base/frontend
 - secret.yaml
+- istio-injection-namespace.yaml
 
 # 2. 이 환경의 모든 리소스에 적용할 네임스페이스
 namespace: default
