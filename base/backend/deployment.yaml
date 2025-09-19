@@ -11,6 +11,10 @@ spec:
     metadata:
       labels:
         app: my-backend
+      annotations:   # Envoy 사이드카의 네트워크 지표
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /stats/prometheus
+        prometheus.io/port: "15090"
     spec:
       containers:
       - name: my-backend-container
